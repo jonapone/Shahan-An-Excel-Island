@@ -8,7 +8,7 @@ An Excel and VBA learning game on a hand-styled fantasy world map. Every stop on
 
 ## What this project shows
 
-- **Excel curriculum design.** 72 stops and 161 rounds, ordered from `SUM` and `IF` to `XLOOKUP`, `SUMPRODUCT`, `LET`, dynamic arrays, text cleaning, and VBA/Office Script reading. See [docs/CURRICULUM.md](docs/CURRICULUM.md).
+- **Excel curriculum design.** 72 stops and 161 rounds, ordered from `SUM` and `IF` to `XLOOKUP`, `SUMPRODUCT`, `LET`, dynamic arrays, text cleaning, and VBA/Office Script reading. See [CURRICULUM.md](CURRICULUM.md).
 - **Understanding of how formulas fail.** A third of the rounds are about reading or repairing formulas: predict the output, debug a broken formula (drifting references, unsorted `VLOOKUP`, text stored as numbers, `IFERROR` in the wrong place), or find the buggy line in a macro.
 - **AI-assisted engineering with verification.** The game was built in collaboration with Claude. I specified the curriculum and the rules, then play-tested it and sent back every ambiguous puzzle, leaked answer and wrong target range I found. The answer-checking is automated, so it does not depend on trusting the AI (see below).
 
