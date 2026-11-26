@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#10141c;--card:#181e2a;--ink:#e6eaf2;--mute:#9aa4b8;--line:#283043;--code:#0f131b;--a:#4ade80;--b:#6ea0ff;--c:#f5b04c;--d:#b69cff;--e:#ff7a7a;--g:#5fd68f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:20px 20px 8px;max-width:1200px;margin:auto}
+h1{margin:0;font-size:26px}
+header p{color:var(--mute);margin:4px 0 0}
+main{max-width:1200px;margin:auto;padding:16px 20px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;border-top:4px solid var(--a)}
+section.wide{grid-column:1/-1}
+section h2{margin:0 0 10px;font-size:17px}
+section h3{margin:14px 0 4px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute)}
+.b{border-top-color:var(--b)}.c{border-top-color:var(--c)}.d{border-top-color:var(--d)}.e{border-top-color:var(--e)}.g{border-top-color:var(--g)}
+pre{margin:6px 0;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:13px/1.5 ui-monospace,Consolas,monospace}
+code{font:13px ui-monospace,Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px}
+.f{color:var(--b);font-weight:600}.m{color:var(--mute)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+td,th{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+th{background:var(--code)}
+.note{font-size:13px;color:var(--mute);margin:6px 0}
+.tip{border-left:3px solid var(--c);padding:4px 10px;background:var(--code);border-radius:0 6px 6px 0;font-size:13.5px;margin:8px 0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.flow span{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font:600 13px ui-monospace,Consolas,monospace}
+.flow i{font-style:normal;color:var(--mute)}
+kbd{background:var(--code);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;font:12px ui-monospace,Consolas,monospace}
+.grid{border-collapse:collapse;font:13px ui-monospace,Consolas,monospace;margin:6px 0}
+.grid td,.grid th{width:62px;text-align:center;padding:4px}
+.grid th{background:var(--code);color:var(--mute)}
+.hl{background:rgba(37,99,235,.18)}.hl2{background:rgba(217,119,6,.22)}
+.yes{color:var(--a);font-weight:600}.no{color:var(--e);font-weight:600}.mid{color:var(--c);font-weight:600}
+</style>
+</head>
+<body>
+<header>
+<h1>Excel Visual Cheat Sheet</h1>
+<p>Windows shortcuts, references, formulas, lookups, dynamic arrays, PivotTables, cleaning, charts, errors, and a closing comparison with Google Sheets. Examples use a small patient-data sheet.</p>
+</header>
+<main>
+
+<section>
+<h2>1. Shortcuts that save the most time</h2>
+<table>
+<tr><th>Do this</th><th>Keys (Windows)</th></tr>
+<tr><td>Jump to edge of data</td><td><kbd>Ctrl</kbd>+<kbd>Arrow</kbd></td></tr>
+<tr><td>Select to edge of data</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Arrow</kbd></td></tr>
+<tr><td>Select whole table</td><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td></tr>
+<tr><td>Edit cell / cycle $ references</td><td><kbd>F2</kbd> / <kbd>F4</kbd></td></tr>
+<tr><td>Fill down / right</td><td><kbd>Ctrl</kbd>+<kbd>D</kbd> / <kbd>Ctrl</kbd>+<kbd>R</kbd></td></tr>
+<tr><td>Sum selection</td><td><kbd>Alt</kbd>+<kbd>=</kbd></td></tr>
+<tr><td>Insert / delete rows</td><td><kbd>Ctrl</kbd>+<kbd>+</kbd> / <kbd>Ctrl</kbd>+<kbd>-</kbd></td></tr>
+<tr><td>Make a table</td><td><kbd>Ctrl</kbd>+<kbd>T</kbd></td></tr>
+<tr><td>Filter on/off</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
+<tr><td>Paste special</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd></td></tr>
+<tr><td>Find / replace</td><td><kbd>Ctrl</kbd>+<kbd>F</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd></td></tr>
+<tr><td>Go to / special cells</td><td><kbd>F5</kbd></td></tr>
+<tr><td>Flash Fill (pattern copy)</td><td><kbd>Ctrl</kbd>+<kbd>E</kbd></td></tr>
+<tr><td>Newline inside a cell</td><td><kbd>Alt</kbd>+<kbd>Enter</kbd></td></tr>
+</table>
+</section>
+
+<section class="b">
+<h2>2. Cell references</h2>
+<table class="grid">
+<tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+<tr><th>1</th><td>id</td><td>age</td><td>rate</td></tr>
+<tr><th>2</th><td>P01</td><td class="hl">54</td><td class="hl2">1.2</td></tr>
+<tr><th>3</th><td>P02</td><td>61</td><td></td></tr>
+</table>
+<table>
+<tr><th>Type</th><th>Example</th><th>When copied</th></tr>
+<tr><td>Relative</td><td><code>B2</code></td><td>moves with the formula</td></tr>
+<tr><td>Absolute</td><td><code>$C$2</code></td><td>never moves</td></tr>
+<tr><td>Mixed</td><td><code>$B2</code> / <code>B$2</code></td><td>locks column / locks row</td></tr>
+<tr><td>Range</td><td><code>B2:B100</code></td><td>block of cells</td></tr>
+<tr><td>Other sheet</td><td><code>'Raw data'!B2</code></td><td>quote names with spaces</td></tr>
+<tr><td>Table column</td><td><code>Table1[age]</code></td><td>auto-grows with the table</td></tr>
+<tr><td>Spill range</td><td><code>A2#</code></td><td>the whole dynamic array result</td></tr>
+</table>
+<div class="tip">Press <kbd>F4</kbd> while editing a reference to cycle <code>B2</code> → <code>$B$2</code> → <code>B$2</code> → <code>$B2</code>. Operators: <code>+ - * / ^ &amp;</code> (join text) <code>= &lt;&gt; &gt;= &lt;=</code>.</div>
+</section>
+
+<section class="c">
+<h2>3. Lookups</h2>
+<pre><span class="m">// modern, use this by default</span>
+<span class="f">=XLOOKUP</span>(lookup, lookup_range, return_range, "not found", 0)
+
+<span class="m">// classic and works everywhere</span>
+<span class="f">=INDEX</span>(return_range, <span class="f">MATCH</span>(lookup, lookup_range, 0))
+
+<span class="m">// legacy: can only look right, breaks if you insert columns</span>
+<span class="f">=VLOOKUP</span>(lookup, table, col_number, FALSE)</pre>
+<table>
+<tr><th></th><th>XLOOKUP</th><th>INDEX/MATCH</th><th>VLOOKUP</th></tr>
+<tr><td>Looks left</td><td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td></tr>
+<tr><td>Safe on column insert</td><td class="yes">yes</td><td class="yes">yes</td><td class="no">no</td></tr>
+<tr><td>Default exact match</td><td class="yes">yes</td><td class="mid">need 0</td><td class="mid">need FALSE</td></tr>
+<tr><td>Excel 2016/2019</td><td class="no">no</td><td class="yes">yes</td><td class="yes">yes</td></tr>
+</table>
+<div class="tip">Forgetting <code>FALSE</code> / <code>0</code> in VLOOKUP and MATCH gives approximate match. It returns wrong values silently, with no error.</div>
+</section>
+
+<section>
+<h2>4. Logic &amp; conditional math</h2>
+<pre><span class="f">=IF</span>(B2&gt;=65, "senior", "adult")
+<span class="f">=IFS</span>(B2&lt;18,"minor", B2&lt;65,"adult", TRUE,"senior")
+<span class="f">=AND</span>(B2&gt;=18, C2="F")    <span class="f">=OR</span>(…)    <span class="f">=NOT</span>(…)
+<span class="f">=IFERROR</span>(XLOOKUP(…), "missing")
+<span class="f">=SWITCH</span>(A2, "F","Female", "M","Male", "Other")</pre>
+<h3>Conditional aggregation</h3>
+<pre><span class="f">=COUNTIFS</span>(sex_rng,"F", age_rng,"&gt;=65")
+<span class="f">=SUMIFS</span>(value_rng, sex_rng,"F", date_rng,"&gt;="&amp;DATE(2026,1,1))
+<span class="f">=AVERAGEIFS</span>(value_rng, group_rng, E2)
+<span class="f">=MAXIFS</span>(…)   <span class="f">=MINIFS</span>(…)</pre>
+<div class="tip">In <code>SUMIFS</code> the <b>sum range comes first</b>; in <code>SUMIF</code> it comes last. Criteria with operators are text: <code>"&gt;=65"</code>, or <code>"&gt;="&amp;F1</code> for a cell value.</div>
+</section>
+
+<section class="d">
+<h2>5. Dynamic arrays (365 / 2021+)</h2>
+<p class="note">One formula, many results. The result "spills" into neighbouring cells.</p>
+<pre><span class="f">=FILTER</span>(A2:D100, (D2:D100="F")*(B2:B100&gt;=65), "none")
+<span class="f">=SORT</span>(A2:D100, 2, -1)            <span class="m">// by column 2, descending</span>
+<span class="f">=UNIQUE</span>(D2:D100)
+<span class="f">=SORTBY</span>(A2:A100, B2:B100, -1)
+<span class="f">=XLOOKUP</span>(…)  <span class="m">// can return whole rows</span>
+<span class="f">=SEQUENCE</span>(10)   <span class="f">=TEXTSPLIT</span>(A2,",")
+<span class="f">=TAKE</span>(rng,5)  <span class="f">=DROP</span>(rng,1)  <span class="f">=VSTACK</span>(r1,r2)</pre>
+<h3>LET: name things inside a formula</h3>
+<pre><span class="f">=LET</span>(
+  pts, FILTER(B2:B100, D2:D100="F"),
+  AVERAGE(pts) / STDEV.S(pts)
+)</pre>
+<div class="tip"><code>#SPILL!</code> means something is blocking the spill area. Clear the cells below/right of the formula.</div>
+</section>
+
+<section class="wide">
+<h2>6. PivotTables in four moves</h2>
+<div class="flow"><span>Click in data</span><i>→</i><span>Insert › PivotTable</span><i>→</i><span>Drag fields to 4 areas</span><i>→</i><span>Right-click › Refresh when data changes</span></div>
+<table>
+<tr><th>Area</th><th>Role</th><th>Example</th></tr>
+<tr><td><b>Rows</b></td><td>group down the side</td><td>sex</td></tr>
+<tr><td><b>Columns</b></td><td>group across the top</td><td>visit year</td></tr>
+<tr><td><b>Values</b></td><td>what to calculate (Sum, Count, Average…)</td><td>average age</td></tr>
+<tr><td><b>Filters</b></td><td>limit the whole table</td><td>site</td></tr>
+</table>
+<ul>
+<li>Right-click a value › <b>Show Values As</b> for % of total, % of row, running total.</li>
+<li><b>Group</b> dates into months/years and numbers into bins (right-click a row label).</li>
+<li>Source should be a clean table: one header row, no blanks, no merged cells. Use <kbd>Ctrl</kbd>+<kbd>T</kbd> first so the pivot grows with data.</li>
+<li>Pivots do <b>not</b> refresh themselves. Right-click › Refresh, or <kbd>Alt</kbd>+<kbd>F5</kbd>.</li>
+</ul>
+</section>
+
+<section>
+<h2>7. Text &amp; dates</h2>
+<pre><span class="f">=TRIM</span>(A2)  <span class="f">=CLEAN</span>(A2)  <span class="f">=UPPER</span>/<span class="f">LOWER</span>/<span class="f">PROPER</span>
+<span class="f">=LEFT</span>(A2,3)  <span class="f">=MID</span>(A2,4,2)  <span class="f">=RIGHT</span>(A2,2)
+<span class="f">=LEN</span>(A2)  <span class="f">=FIND</span>("-",A2)  <span class="f">=SUBSTITUTE</span>(A2,"/","-")
+<span class="f">=TEXTJOIN</span>(", ",TRUE,A2:A9)
+<span class="f">=A2&amp;" "&amp;B2</span>    <span class="m">// join</span>
+<span class="f">=TEXT</span>(A2,"yyyy-mm-dd")
+<span class="f">=VALUE</span>("12.5")   <span class="m">// text to number</span></pre>
+<h3>Dates are numbers</h3>
+<pre><span class="f">=TODAY</span>()  <span class="f">=NOW</span>()  <span class="f">=DATE</span>(2026,11,16)
+<span class="f">=YEAR</span>/<span class="f">MONTH</span>/<span class="f">DAY</span>(A2)
+<span class="f">=DATEDIF</span>(A2, TODAY(), "Y")       <span class="m">// age in years</span>
+<span class="f">=EOMONTH</span>(A2, 0)   <span class="f">=EDATE</span>(A2, 3)
+<span class="f">=NETWORKDAYS</span>(start, end)</pre>
+<div class="tip">If a "date" is left-aligned, it's text. Fix with <code>DATEVALUE</code> or Text to Columns. Day-month order depends on your regional settings, so import dates from other countries with care.</div>
+</section>
+
+<section class="e">
+<h2>8. Cleaning data</h2>
+<table>
+<tr><th>Problem</th><th>Fix</th></tr>
+<tr><td>Extra spaces</td><td><code>TRIM()</code> then paste values</td></tr>
+<tr><td>Numbers stored as text</td><td>Data › Text to Columns › Finish, or <code>VALUE()</code></td></tr>
+<tr><td>Combined column</td><td>Data › Text to Columns, or <code>TEXTSPLIT</code></td></tr>
+<tr><td>Duplicates</td><td>Data › Remove Duplicates, or <code>UNIQUE()</code></td></tr>
+<tr><td>Blank cells</td><td><kbd>F5</kbd> › Special › Blanks</td></tr>
+<tr><td>Inconsistent labels</td><td>Find &amp; Replace, or a lookup table</td></tr>
+<tr><td>Big messy import</td><td><b>Power Query</b>: Data › Get Data. Steps are recorded and re-run on refresh.</td></tr>
+</table>
+<div class="tip">Paste values only: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> then <kbd>V</kbd>. Never overwrite your raw data tab. Clean in a copy or in Power Query so you can retrace your steps.</div>
+</section>
+
+<section class="b">
+<h2>9. Which chart?</h2>
+<table>
+<tr><th>Question</th><th>Chart</th></tr>
+<tr><td>Compare categories</td><td>Column / bar</td></tr>
+<tr><td>Change over time</td><td>Line</td></tr>
+<tr><td>Relationship of two numbers</td><td>Scatter</td></tr>
+<tr><td>Distribution</td><td>Histogram, box and whisker</td></tr>
+<tr><td>Parts of a whole (few parts)</td><td>Stacked bar. Pie only for 2 to 4 slices.</td></tr>
+<tr><td>Trend inside a cell</td><td>Sparklines (Insert › Sparklines)</td></tr>
+</table>
+<p class="note">Select the data including headers, then <kbd>Alt</kbd>+<kbd>F1</kbd> inserts a chart instantly.</p>
+<h3>Conditional formatting</h3>
+<p class="note">Home › Conditional Formatting. Data bars, color scales, and "Use a formula" with a rule such as <code>=$B2&gt;=65</code> to highlight whole rows.</p>
+</section>
+
+<section class="e">
+<h2>10. Error codes decoded</h2>
+<table>
+<tr><th>Error</th><th>Meaning</th><th>Usual fix</th></tr>
+<tr><td><code>#DIV/0!</code></td><td>divide by zero or blank</td><td>guard with <code>IF(B2=0,"",A2/B2)</code></td></tr>
+<tr><td><code>#N/A</code></td><td>lookup found nothing</td><td>check spaces, types, exact match</td></tr>
+<tr><td><code>#NAME?</code></td><td>unknown function or name</td><td>typo, or function not in your version</td></tr>
+<tr><td><code>#VALUE!</code></td><td>wrong data type</td><td>text where a number is needed</td></tr>
+<tr><td><code>#REF!</code></td><td>reference deleted</td><td>undo, or rebuild the reference</td></tr>
+<tr><td><code>#NUM!</code></td><td>impossible number</td><td>check arguments (sqrt of negative)</td></tr>
+<tr><td><code>#SPILL!</code></td><td>spill area blocked</td><td>clear cells in the way</td></tr>
+<tr><td><code>######</code></td><td>column too narrow</td><td>widen it (not a real error)</td></tr>
+</table>
+<div class="tip">Debug: <b>Formulas › Evaluate Formula</b> steps through a formula one calculation at a time. <kbd>F9</kbd> on a highlighted part of the formula bar shows its value.</div>
+</section>
+
+<section class="wide g">
+<h2>11. Excel vs Google Sheets: the major differences</h2>
+<p class="note">Both are moving targets, so check feature availability in your own version. Where a row says "both", syntax is mostly the same.</p>
+<table>
+<tr><th style="width:18%">Area</th><th style="width:41%">Excel (desktop, 365)</th><th style="width:41%">Google Sheets</th></tr>
+<tr><td><b>Collaboration</b></td><td>Co-authoring works when the file lives on OneDrive/SharePoint. Desktop-first.</td><td><span class="yes">Built for it.</span> Real-time editing, comments, version history, and sharing links are the default.</td></tr>
+<tr><td><b>Size &amp; speed</b></td><td><span class="yes">Handles large data.</span> Up to 1,048,576 rows × 16,384 columns per sheet. Runs locally, so it is fast on big files.</td><td><span class="mid">Cell cap.</span> About 10 million cells per spreadsheet. Browser-based, so it slows down with heavy formulas and large imports.</td></tr>
+<tr><td><b>Data transformation</b></td><td><span class="yes">Power Query</span> (visual ETL, recorded steps) and <span class="yes">Power Pivot</span> (data model, DAX, millions of rows).</td><td>No equivalent. Use <code>QUERY()</code> (SQL-like), <code>FILTER</code>, <code>IMPORTRANGE</code>, plus Apps Script for heavy lifting.</td></tr>
+<tr><td><b>PivotTables</b></td><td><span class="yes">More powerful:</span> slicers, timelines, grouping, calculated fields, data model, PivotCharts.</td><td>Simpler pivots that are quick to build. Fewer options. Slicers exist for tables and charts.</td></tr>
+<tr><td><b>Formulas</b></td><td>Most functions in both. Dynamic arrays spill automatically.<br>Excel-only: <code>TEXTSPLIT</code>, <code>VSTACK</code>/<code>TAKE</code> family on current builds, <code>CUBE*</code>, many stats and financial extras.</td><td>Sheets-only: <code>QUERY</code>, <code>IMPORTRANGE</code>, <code>IMPORTHTML</code>/<code>IMPORTXML</code>, <code>GOOGLEFINANCE</code>, <code>GOOGLETRANSLATE</code>, <code>SPARKLINE</code>.<br>Arrays need <code>ARRAYFORMULA()</code> in many cases.</td></tr>
+<tr><td><b>Automation</b></td><td><span class="yes">VBA</span> macros (desktop only), Office Scripts (web), Power Automate.</td><td><span class="yes">Apps Script</span> (JavaScript). Runs in the cloud, triggers on schedule or on edit, and is good for connecting Google services.</td></tr>
+<tr><td><b>Charts &amp; formatting</b></td><td><span class="yes">Richer:</span> more chart types, deeper formatting, conditional formatting rules, themes, templates.</td><td>Cleaner but more limited. Fewer chart types and less control over details.</td></tr>
+<tr><td><b>Data types / tables</b></td><td>Excel Tables (<code>Table1[col]</code>), stock and geography data types.</td><td>Tables exist but the structured-reference style is lighter. Smart chips for people, files, dates.</td></tr>
+<tr><td><b>Files &amp; access</b></td><td>.xlsx on your computer or cloud. Works offline by default. Share by file or link.</td><td>Lives in Drive. Works offline only if enabled. Opens .xlsx and exports to it, but advanced features can be lost on conversion.</td></tr>
+<tr><td><b>Cost</b></td><td>Paid (Microsoft 365 or one-time license). Excel for the web is free but limited.</td><td>Free with a Google account. Workspace plans add admin controls.</td></tr>
+<tr><td><b>Shortcuts</b></td><td>Windows and Mac sets, long-standing muscle memory.</td><td>Similar but not identical. Some Excel shortcuts (e.g. <kbd>F4</kbd> for $) work, others differ.</td></tr>
+</table>
+
+<h3>Translating common formulas</h3>
+<table>
+<tr><th>Task</th><th>Excel</th><th>Google Sheets</th></tr>
+<tr><td>Apply to a whole column</td><td><code>=A2:A100*2</code> (spills)</td><td><code>=ARRAYFORMULA(A2:A100*2)</code></td></tr>
+<tr><td>SQL-style query</td><td>Power Query, or <code>FILTER</code> + <code>SORT</code></td><td><code>=QUERY(A1:D100,"select A,sum(C) where D='F' group by A")</code></td></tr>
+<tr><td>Pull from another file</td><td>External link or Power Query</td><td><code>=IMPORTRANGE("url","Sheet1!A1:D")</code></td></tr>
+<tr><td>Split text</td><td><code>=TEXTSPLIT(A2,",")</code></td><td><code>=SPLIT(A2,",")</code></td></tr>
+<tr><td>Sparkline</td><td>Insert › Sparklines</td><td><code>=SPARKLINE(B2:G2)</code></td></tr>
+<tr><td>Unique values</td><td><code>=UNIQUE(A2:A100)</code></td><td><code>=UNIQUE(A2:A100)</code> (same)</td></tr>
+<tr><td>Lookup</td><td><code>=XLOOKUP(…)</code></td><td><code>=XLOOKUP(…)</code> (now supported)</td></tr>
+</table>
+
+<div class="tip"><b>Rule of thumb:</b> Excel for large datasets, heavy analysis, Power Query/Pivot work and offline use. Sheets for sharing, live collaboration, lightweight tracking and pulling in web or Google data. If your data is clinical or sensitive, the deciding factor is often where the file is allowed to live, not the features.</div>
+</section>
+
+</main>
+</body>
+</html>
