@@ -28,18 +28,14 @@ Formulas are graded by **evaluating them**, so any correct formula passes. Hard-
 ## Structure
 
 ```
-index.html         the built game (open this)
-src/               source parts, concatenated by build.sh
-  engine*.js       spreadsheet engine: parser, evaluator, function library
-  c1..c9.js        lesson and boss content, one file per region
-  g1..g4.js        game logic, challenge UI, map overlay, save/restore
-  mapjs.js         SVG world map, terrain relief, monsters
-  wisdom.html      the Excel cheat sheet shown in-game
-  chk.js           validator: every reference solution must pass, every broken start must fail
-docs/              curriculum map and screenshots
-```
-
-Rebuild with `bash src/build.sh`, which writes `index.html`.
+- `index.html` is the built game.
+- `engine1.js`, `engine2.js`, `engine3.js` are the spreadsheet engine: parser, evaluator and function library.
+- `c1.js` to `c9.js` hold the lesson and boss content, grouped by region.
+- `g1.js` to `g4.js` hold the game logic, challenge UI, map overlay and save/restore.
+- `mapjs.js` draws the SVG world map, terrain and monsters.
+- `wisdom.html` is the in-game Excel cheat sheet.
+- `chk.js` is the validator (see below).
+- `CURRICULUM.md` lists every stop and its round types.
 
 ## Verifying the content
 
