@@ -2,7 +2,7 @@
 
 An Excel and VBA learning game on a hand-styled fantasy world map. Every stop on the map is a short lesson or a boss fight, and every challenge is answered by typing a real formula into a working spreadsheet grid. It is a single HTML file, with no server and no install.
 
-![World map](docs/img/world-map.png)
+![World map](world-map.png)
 
 **Play it:** open `index.html` in any modern browser. (After enabling GitHub Pages: `https://<your-username>.github.io/<repo-name>/`.)
 
@@ -49,8 +49,8 @@ Rebuild with `bash src/build.sh`, which writes `index.html`.
 
 | | |
 |---|---|
-| ![Challenge](docs/img/formula-challenge.png) | ![Sea monsters](docs/img/sea-monsters.png) |
-| ![Hoarfrost Spine](docs/img/hoarfrost-spine.png) | ![Obsidian Isle](docs/img/obsidian-isle.png) |
+| ![Challenge](formula-challenge.png) | ![Sea monsters](sea-monsters.png) |
+| ![Hoarfrost Spine](hoarfrost-spine.png) | ![Obsidian Isle](obsidian-isle.png) |
 
 ## Honest limits
 
