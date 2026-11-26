@@ -4,7 +4,7 @@ An Excel and VBA learning game on a hand-styled fantasy world map. Every stop on
 
 ![World map](world-map.png)
 
-**Play it:** open `index.html` in any modern browser. (After enabling GitHub Pages: `https://<your-username>.github.io/<repo-name>/`.)
+**Play it:** open `index.html` in any modern browser. (After enabling GitHub Pages: https://jonapone.github.io/Shahan-An-Excel-Island/)
 
 ## What this project shows
 
